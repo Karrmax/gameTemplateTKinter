@@ -7,8 +7,8 @@ Date de création: 2024-16-11
 Date de modification: 2024-04-12
 """
 
-from managers.inputManager import InputManager
-from managers.RenderManager import RenderManager
+# from managers.inputManager import InputManager
+from managers.renderManager import RenderManager
 from divers.vector import Vector
 from game.Board import Board
 import time
@@ -20,7 +20,7 @@ class GameLogic:
     Attributs:
         canvas (tk.Canvas): Le canvas pour le rendu du jeu.
         callback_endSequence (function): Fonction de rappel pour la fin de la séquence de jeu.
-        load_manager (LoadManager): Le gestionnaire de chargement des ressources.
+        loadManager (LoadManager): Le gestionnaire de chargement des ressources.
         inputManager (InputManager): Le gestionnaire des entrées utilisateur.
         renderManager (RenderManager): Le gestionnaire du rendu.
         board (Board): Le plateau de jeu.
@@ -29,27 +29,27 @@ class GameLogic:
         points (int): Les points du joueur.
         target_fps (int): Le nombre d'images par seconde cible.
     """
-    def __init__(self, canvas, load_manager, callback_endSequence, target_fps=60):
+    def __init__(self, canvas, loadManager, inputManager, callback_endSequence, target_fps=60):
         """
         Initialise la logique du jeu avec les paramètres donnés.
         
         Args:
             screen (tk.Frame): L'écran de jeu.
-            load_manager (LoadManager): Le gestionnaire de chargement des ressources.
+            loadManager (LoadManager): Le gestionnaire de chargement des ressources.
             callback_endSequence (function): Fonction de rappel pour la fin de la séquence de jeu.
             target_fps (int, optional): Le nombre d'images par seconde cible. Par défaut, 60.
         """
         self.canvas = canvas
         self.callback_endSequence = callback_endSequence
-        self.load_manager = load_manager
-        self.inputManager = InputManager()
+        self.loadManager = loadManager
+        self.inputManager = inputManager
         
-        load_manager.resizeAllBackgrounds(self.canvas.winfo_reqwidth(), self.canvas.winfo_reqheight())
-        bgs = self.load_manager.getBackgrounds()
+        loadManager.resizeAllBackgrounds(self.canvas.winfo_reqwidth(), self.canvas.winfo_reqheight())
+        bgs = self.loadManager.getBackgrounds()
         
         self.renderManager = RenderManager(self.canvas, bgs)
         
-        self.board = Board(self.canvas.winfo_reqwidth(), self.canvas.winfo_reqheight(), self.load_manager)
+        self.board = Board(self.canvas.winfo_reqwidth(), self.canvas.winfo_reqheight(), self.loadManager)
         
         self.running = False
         self.points = 0
@@ -108,6 +108,7 @@ class GameLogic:
         Change l'état du jeu en fonction des entrées utilisateur.
         """
         inputs = self.inputManager.get_inputs()
+        # print(inputs)
         # self.stage_manager.changeStates()
         # for entity in self.board.getEntities():
         #     entity.changeState(inputs)

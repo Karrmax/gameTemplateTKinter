@@ -36,7 +36,7 @@ class GameScreen(BaseScreen):
         super().__init__(root, switch_callback, load_manager, inputManager, canvas=True)
         
         # Initialisation de la logique du jeu avec une cible de 60 FPS
-        self.gameLogic = GameLogic(self.canvas, load_manager, self.callback_endSequence, target_fps=60)
+        self.gameLogic = GameLogic(self.canvas, self.loadManager, self.inputManager, self.callback_endSequence, target_fps=60)
 
         # Bind the Esc key to pause the game
         # root.bind("<KeyRelease-Escape>", self.toggle_pause)
@@ -57,7 +57,7 @@ class GameScreen(BaseScreen):
         Change l'écran pour le lobby et réinitialise la logique du jeu.
         """
         self.switch_callback("lobbyScreen")
-        self.gameLogic = GameLogic(self, self.load_manager, self.callback_endSequence, target_fps=60)
+        self.gameLogic = GameLogic(self.canvas, self.loadManager, self.inputManager, self.callback_endSequence, target_fps=60)
         
     def start_game_loop(self):
         """
@@ -103,6 +103,6 @@ class GameScreen(BaseScreen):
         """
         Redémarre le jeu.
         """
-        self.gameLogic = GameLogic(self , self.load_manager, self.callback_endSequence, target_fps=60)
+        self.gameLogic = GameLogic(self.canvas, self.loadManager, self.inputManager, self.callback_endSequence, target_fps=60)
         self.resume_game()
         self.start_game_loop()

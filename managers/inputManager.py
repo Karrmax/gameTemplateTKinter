@@ -37,7 +37,7 @@ class InputManager:
         Args:
             event (tk.Event): L'événement de pression de touche.
         """
-        print(event.keysym)
+        # print(event.keysym)
         if event.keysym == "Caps_Lock" or event.keysym == "Alt_L" or event.keysym == "Alt_R" or event.keysym == "Shift_R" or event.keysym == "Shift_L":
             self.keys = {}    
         self.keys[event.keysym] = True

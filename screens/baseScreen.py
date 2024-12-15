@@ -31,6 +31,7 @@ class BaseScreen(tk.Frame):
 
         self.switchCallback = switchCallback
         self.loadManager = loadManager
+        self.inputManager = inputManager
         self.canvas = None
         
         if "canvas" in kwargs and kwargs["canvas"]:
