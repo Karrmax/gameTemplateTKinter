@@ -3,8 +3,8 @@ Auteur: Jules GRIVOT PELISSON, Raphael Dziopa
 Classe: LoadManager
 Description: Cette classe gère le chargement des ressources pour le jeu, y compris les images, les sons et les arrière-plans.
 TODO: Ajouter des fonctionnalités spécifiques pour le gestionnaire de chargement, comme la gestion des ressources audio ou le préchargement des ressources pour améliorer les performances.
-Date de création: 2024-16-11
-Date de modification: 2024-10-12
+Date de création: 16/12/2024
+Date de modification: 16/12/2024
 """
 
 from PIL import Image, ImageTk

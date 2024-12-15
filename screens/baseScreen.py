@@ -1,10 +1,9 @@
 """
-Auteur: Jules GRIVOT PELISSON, Raphael Dziopa
-Classe: GameScreen
-Description: Cette classe représente l'écran de jeu. Elle gère l'affichage du jeu, les pauses, les scores et les interactions utilisateur.
-TODO: Ajouter des fonctionnalités spécifiques pour l'écran de jeu, comme des animations de transition, des effets visuels ou des interactions avancées avec les éléments du jeu.
-Date de création: 2024-18-11
-Date de modification: 2024-10-12
+Auteur: Jules GRIVOT PELISSON
+Classe: BaseScreen
+Description: Cette classe est la classe dont chaque fenetre de jeu hérite. Elle contient les fonctions de base pour chaque fenetre de jeu.
+Date de création: 16/12/2024
+Date de modification: 16/12/2024
 """
 
 import tkinter as tk
@@ -18,7 +17,7 @@ class BaseScreen(tk.Frame):
         loadManager (LoadManager): Gestionnaire de chargement des ressources.
         canvas (tk.Canvas): Canvas pour afficher le jeu.
     """
-    def __init__(self, root, switchCallback, loadManager, **kwargs):
+    def __init__(self, root, switchCallback, loadManager, inputManager, **kwargs):
         """
         Initialise l'écran de jeu.
         

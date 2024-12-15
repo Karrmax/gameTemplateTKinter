@@ -10,10 +10,8 @@ Date de modification: 16/12/2024
 import tkinter as tk
 import os
 import importlib
-from screens.lobbyScreen import LobbyScreen
-from screens.leaderboardScreen import LeaderboardScreen
-from screens.gameScreen import GameScreen
 from managers.loadManager import LoadManager
+from managers.inputManager import InputManager
 
 class MainRoot:
     """
@@ -35,10 +33,13 @@ class MainRoot:
 
         self.loadManager = LoadManager()
         self.loadManager.load_resources()
-
+        
+        self.inputManager = InputManager()
+        self.inputManager.bindAll(self.root)
+        
         self.screens = {}
         self.currentScreen = None
-        self.ignoredScreens = ["mainRoot", "gameScreen", "leaderboardScreen"]
+        self.ignoredScreens = ["mainRoot", "leaderboardScreen"]
         self.init_screens()
 
     def init_screens(self):
@@ -52,7 +53,7 @@ class MainRoot:
                 module = importlib.import_module(f".{module_name}", package="screens") # import module dynamically
                 class_name = ''.join([part[0].capitalize()+part[1::] for part in module_name.split('_')]) # works for My_Class_Name and MyClassName
                 screen_class = getattr(module, class_name) # get class from module
-                self.screens[module_name] = screen_class(self.root, self.switch_screen, self.loadManager) # create instance of screen class and store it in screens dict
+                self.screens[module_name] = screen_class(self.root, self.switch_screen, self.loadManager, self.inputManager) # create instance of screen class and store it in screens dict
                 
         self.switch_screen("lobbyScreen") # start with the lobby screen by default
 
@@ -80,6 +81,9 @@ class MainRoot:
         """
         self.root.mainloop()
 
+
+
+        
 def resize(event):
     """
     Gère l'événement de redimensionnement de la fenêtre.

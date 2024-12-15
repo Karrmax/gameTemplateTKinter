@@ -3,8 +3,8 @@ Auteur: Jules GRIVOT PELISSON, Raphael Dziopa
 Classe: LobbyScreen
 Description: Cette classe représente l'écran du lobby. Elle permet de naviguer vers le jeu ou le tableau des scores.
 TODO: Ajouter des fonctionnalités spécifiques pour l'écran du lobby, comme des animations, des effets visuels ou des interactions avancées avec les éléments du jeu.
-Date de création: 2024-18-11
-Date de modification: 2024-10-12
+Date de création: 16/12/2024
+Date de modification: 16/12/2024
 """
 
 import tkinter as tk
@@ -21,7 +21,7 @@ class LobbyScreen(BaseScreen):
         loadManager (LoadManager): Gestionnaire de chargement des ressources.
         canvas (tk.Canvas): Canvas pour afficher le fond du lobby.
     """
-    def __init__(self, root, switchCallback, loadManager):
+    def __init__(self, root, switchCallback, loadManager, inputManager):
         """
         Initialise l'écran du lobby.
         
@@ -32,7 +32,7 @@ class LobbyScreen(BaseScreen):
         """
         # 
         
-        super().__init__(root, switchCallback, loadManager, canvas=True)
+        super().__init__(root, switchCallback, loadManager, inputManager, canvas=True)
 
         #canvas = tk.Canvas(self, width=root.winfo_screenwidth(), height=root.winfo_screenheight())
         # self.canvas.pack(fill="both", expand=True)
